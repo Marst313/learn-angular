@@ -1,0 +1,171 @@
+<aside
+  id="default-sidebar"
+  class="fixed left-0 top-0 z-40 h-screen w-72 -translate-x-full transition-transform sm:translate-x-0"
+  aria-label="Sidebar"
+>
+  <div
+    class="flex h-full flex-col gap-5 overflow-y-auto bg-primaryBlue py-4 text-white"
+  >
+    <a
+      class="mb-4 p-2 px-5 text-4xl font-extrabold leading-none tracking-tight text-white hover:cursor-pointer md:text-5xl lg:text-4xl"
+    >
+      Playlist
+    </a>
+
+    <ul class="flex-col justify-center space-y-2 px-3 font-medium">
+      <li>
+        <a
+          href="#"
+          class="group flex items-center rounded-lg p-2 text-white hover:bg-gray-700"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-white"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M9 19C9 20.1046 7.65685 21 6 21C4.34315 21 3 20.1046 3 19C3 17.8954 4.34315 17 6 17C7.65685 17 9 17.8954 9 19ZM9 19V5L21 3V17M21 17C21 18.1046 19.6569 19 18 19C16.3431 19 15 18.1046 15 17C15 15.8954 16.3431 15 18 15C19.6569 15 21 15.8954 21 17ZM9 9L21 7"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+          <span class="ms-3">My Playlist</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          class="group flex items-center rounded-lg p-2 text-white hover:bg-gray-700"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-white"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+          <span class="ms-3 flex-1 whitespace-nowrap">Last Listening</span>
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="#"
+          class="group flex items-center rounded-lg p-2 text-white hover:bg-gray-700"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-white"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+          <span class="ms-3 flex-1 whitespace-nowrap">Recomended</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="mt-5 flex-col justify-center space-y-2 font-medium">
+      <li *ngFor="let music of PlaylistMusic; index as index">
+        <a
+          href="#"
+          class="group flex items-center p-2 text-white hover:bg-secondaryBlue/40"
+        >
+          <p class="text-sm text-white/40">0{{ index + 1 }}</p>
+
+          <div class="ms-4 flex w-full items-center">
+            <img [src]="music.image" alt="image" class="h-10 w-10" />
+
+            <div class="ms-3 flex-1 whitespace-nowrap text-sm capitalize">
+              <!-- SINGER -->
+              <p>{{ music.title }}</p>
+              <!-- TITLE -->
+              <p class="text-white/40">{{ music.singer }}</p>
+            </div>
+
+            <button [attr.data-popover-target]="music.title">
+              <svg
+                class="h-8 w-8 text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                  d="M12 6h.01M12 12h.01M12 18h.01"
+                />
+              </svg>
+            </button>
+
+            <div
+              data-popover
+              [id]="music.title"
+              role="tooltip"
+              class="invisible absolute z-10 inline-block w-52 rounded-lg border border-gray-200 bg-white text-sm text-gray-500 opacity-0 shadow-sm transition-opacity duration-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400"
+            >
+              <div
+                class="rounded-t-lg border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
+              >
+                <h3 class="font-semibold text-gray-900 dark:text-white">
+                  {{ music.title }}
+                </h3>
+              </div>
+              <div class="px-3 py-2">
+                <p>
+                  {{ music.singer }}
+                </p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
