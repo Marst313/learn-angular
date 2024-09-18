@@ -1,0 +1,29 @@
+#steps-range,
+#steps-volume {
+  /* Appearance and size */
+  appearance: none;
+  height: 6px;
+  width: 100%;
+  background: #ebf4f6; /* Light gray for the background */
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+
+  /* Custom thumb */
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #37b7c3; /* White thumb */
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #6b4c4c;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

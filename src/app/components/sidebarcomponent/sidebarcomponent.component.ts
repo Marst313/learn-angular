@@ -17,8 +17,10 @@ export class SidebarcomponentComponent implements OnInit {
   isLoading: boolean = false;
   isPlaying: boolean = false;
   isShowed: boolean = false;
-  maxDuration: string = '';
+  maxDuration: string = '00:00';
   currentDuration: number = 0;
+  currentVolume: number = 5;
+
   timeToSeconds = timeToSeconds;
   formatDuration = formatDuration;
 
@@ -43,13 +45,6 @@ export class SidebarcomponentComponent implements OnInit {
     });
   }
 
-  saveRange(e: Event) {
-    const inputElement = e.target as HTMLInputElement;
-    const newDuration = Number(inputElement?.value);
-
-    this.audioService.seekTo(newDuration);
-  }
-
   playSelectedMusic(music: IMusicPlaylist, index: number) {
     // Delegate the playback logic to the AudioService
     this.audioService.playMusic(music, index);
@@ -63,7 +58,40 @@ export class SidebarcomponentComponent implements OnInit {
     }
   }
 
-  setIsPlaying(isPlaying: boolean) {
-    this.audioService.setIsPlaying(isPlaying);
+  saveRange(e: Event, type: 'duration' | 'volume') {
+    const inputElement = e.target as HTMLInputElement;
+    const newDuration = Number(inputElement?.value);
+
+    if (type === 'duration') {
+      this.currentDuration = newDuration;
+      this.audioService.seekTo(newDuration);
+      return;
+    }
+
+    if (type === 'volume') {
+      this.currentVolume = newDuration;
+      this.audioService.changeVolume(newDuration);
+    }
+  }
+
+  // UPDATE BACKGROUND DYNAMICALLY
+  getSliderBackground(type: 'volume' | 'duration'): string {
+    let percentage;
+
+    if (type === 'duration') {
+      const max = this.timeToSeconds(this.maxDuration);
+      percentage = (this.currentDuration / max) * 100;
+      return `linear-gradient(to right, #37b7c3 ${percentage}%, #d1d5db ${percentage}%)`;
+    }
+
+    percentage = (this.currentVolume / 10) * 100;
+
+    // Create a linear gradient based on the current duration percentage
+    return `linear-gradient(to right, #37b7c3 ${percentage}%, #d1d5db ${percentage}%)`;
+  }
+
+  setVolume(volume: number) {
+    this.currentVolume = volume;
+    this.audioService.changeVolume(volume);
   }
 }

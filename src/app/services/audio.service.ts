@@ -14,6 +14,7 @@ export class AudioService {
   private currentAudioElementSubject =
     new BehaviorSubject<HTMLAudioElement | null>(null);
   private currentPlayingIndex: number | null = null;
+  private currentAudioVolumeSubject = new BehaviorSubject<number>(0);
 
   // Export the observables
   isPlaying$ = this.isPlayingSubject.asObservable();
@@ -21,27 +22,28 @@ export class AudioService {
   maxDuration$ = this.maxDurationSubject.asObservable();
   currentDuration$ = this.currentValueDurationSubject.asObservable();
   currentAudio$ = this.currentAudioElementSubject.asObservable();
+  currentVolume$ = this.currentAudioVolumeSubject.asObservable();
 
   setIsPlaying(isPlaying: boolean) {
     this.isPlayingSubject.next(isPlaying);
   }
-
   setIsLoading(isLoading: boolean) {
     this.isLoadingSubject.next(isLoading);
   }
-
   setMaxDuration(duration: string) {
     this.maxDurationSubject.next(duration);
   }
-
   setCurrentValueDuration(duration: number) {
     this.currentValueDurationSubject.next(duration);
   }
-
   setCurrentAudioElement(audio: HTMLAudioElement | null) {
     this.currentAudioElementSubject.next(audio);
   }
+  setCurrentVolume(volume: number) {
+    this.currentAudioVolumeSubject.next(volume);
+  }
 
+  // CONTROL PLAY, STOP, PLAYBACK, SEEKTO
   playMusic(music: IMusicPlaylist, index: number) {
     // Pause and reset the current audio if it's already playing
     const currentAudio = this.currentAudioElementSubject.value;
@@ -85,10 +87,7 @@ export class AudioService {
 
     // Add an event listener to reset the state when the audio ends
     newAudio.onended = () => {
-      this.currentPlayingIndex = null;
-      this.setCurrentAudioElement(null);
       this.setIsPlaying(false);
-      this.setIsLoading(false);
     };
   }
 
@@ -108,12 +107,22 @@ export class AudioService {
       this.setIsPlaying(true);
     }
   }
-
   seekTo(duration: number) {
     const currentAudio = this.currentAudioElementSubject.value;
 
     if (currentAudio) {
       currentAudio.currentTime = duration;
+    }
+  }
+
+  changeVolume(volume: number) {
+    const currentAudio = this.currentAudioElementSubject.value;
+
+    if (currentAudio) {
+      const adjustedVolume = Math.min(Math.max(volume / 10, 0), 1);
+      currentAudio.volume = adjustedVolume;
+
+      this.setCurrentVolume(adjustedVolume);
     }
   }
 }
