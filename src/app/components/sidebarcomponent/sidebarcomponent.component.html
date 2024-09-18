@@ -403,7 +403,7 @@
       <div
         class="absolute bottom-2 left-0 flex w-full items-center gap-2 px-5 text-sm text-white"
       >
-        <p>{{ currentDuration }}</p>
+        <p>{{ formatDuration(currentDuration) }}</p>
 
         <input
           id="steps-range"
@@ -412,7 +412,7 @@
           [max]="timeToSeconds(maxDuration)"
           [value]="currentDuration"
           step="1"
-          (ngModelChange)="saveRange($event)"
+          (change)="saveRange($event)"
           class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
         />
 

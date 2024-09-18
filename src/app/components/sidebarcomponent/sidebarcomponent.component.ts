@@ -3,7 +3,7 @@ import { PlaylistMusic } from './../../utils/constant';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AudioService } from '../../services/audio.service';
-import { timeToSeconds } from '../../utils/function';
+import { formatDuration, timeToSeconds } from '../../utils/function';
 
 @Component({
   selector: 'app-sidebarcomponent',
@@ -20,6 +20,7 @@ export class SidebarcomponentComponent implements OnInit {
   maxDuration: string = '';
   currentDuration: number = 0;
   timeToSeconds = timeToSeconds;
+  formatDuration = formatDuration;
 
   constructor(private audioService: AudioService) {}
 
@@ -42,8 +43,11 @@ export class SidebarcomponentComponent implements OnInit {
     });
   }
 
-  saveRange(e: any) {
-    console.log(e);
+  saveRange(e: Event) {
+    const inputElement = e.target as HTMLInputElement;
+    const newDuration = Number(inputElement?.value);
+
+    this.audioService.seekTo(newDuration);
   }
 
   playSelectedMusic(music: IMusicPlaylist, index: number) {
@@ -55,14 +59,11 @@ export class SidebarcomponentComponent implements OnInit {
     if (this.isPlaying) {
       this.audioService.pauseMusic();
     } else {
+      this.audioService.playMusicBack(this.currentDuration);
     }
   }
 
   setIsPlaying(isPlaying: boolean) {
     this.audioService.setIsPlaying(isPlaying);
-  }
-
-  updateDuration(duration: string) {
-    this.audioService.setMaxDuration(duration);
   }
 }

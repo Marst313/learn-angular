@@ -63,6 +63,7 @@ export class AudioService {
       .then(() => {
         const maxDuration = formatDuration(newAudio.duration);
 
+        // Set Max Duration Songs , Set playing , Set Loading
         this.setMaxDuration(maxDuration);
         this.setIsPlaying(true);
         this.setIsLoading(false);
@@ -82,10 +83,6 @@ export class AudioService {
         this.setIsLoading(false);
       });
 
-    newAudio.onchange = () => {
-      console.log(newAudio.currentTime);
-      this.setCurrentValueDuration(newAudio.currentTime);
-    };
     // Add an event listener to reset the state when the audio ends
     newAudio.onended = () => {
       this.currentPlayingIndex = null;
@@ -100,6 +97,23 @@ export class AudioService {
     if (currentAudio) {
       currentAudio.pause();
       this.setIsPlaying(false);
+    }
+  }
+
+  playMusicBack(duration: number) {
+    const currentAudio = this.currentAudioElementSubject.value;
+    if (currentAudio) {
+      currentAudio.currentTime = duration;
+      currentAudio.play();
+      this.setIsPlaying(true);
+    }
+  }
+
+  seekTo(duration: number) {
+    const currentAudio = this.currentAudioElementSubject.value;
+
+    if (currentAudio) {
+      currentAudio.currentTime = duration;
     }
   }
 }
