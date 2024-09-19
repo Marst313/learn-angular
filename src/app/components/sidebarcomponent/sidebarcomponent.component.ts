@@ -4,11 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AudioService } from '../../services/audio.service';
 import { formatDuration, timeToSeconds } from '../../utils/function';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebarcomponent',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebarcomponent.component.html',
   styleUrl: './sidebarcomponent.component.css',
 })

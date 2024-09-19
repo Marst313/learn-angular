@@ -3,4 +3,5 @@ export interface IMusicPlaylist {
   singer: string;
   title: string;
   fileName: string;
+  name: string;
 }

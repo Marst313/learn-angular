@@ -106,10 +106,12 @@
       </li>
     </ul>
 
+    <!-- MUSIC CONTAINER -->
     <ul class="mt-5 flex-col justify-center space-y-2 font-medium">
       <li *ngFor="let music of PlaylistMusic; index as index">
-        <button
-          class="group flex w-full items-center p-2 text-start text-white hover:bg-secondaryBlue/40"
+        <a
+          class="group flex w-full cursor-pointer items-center p-2 text-start text-white hover:bg-secondaryBlue/40"
+          [routerLink]="['/music', music.name]"
           (click)="playSelectedMusic(music, index)"
         >
           <p class="text-sm text-white/40">0{{ index + 1 }}</p>
@@ -164,12 +166,13 @@
               <div data-popper-arrow></div>
             </div>
           </div>
-        </button>
+        </a>
       </li>
     </ul>
   </div>
 </aside>
 
+<!-- AUDIO PLAYER -->
 <footer
   class="fixed bottom-0 z-50 w-full border-t-2 border-white bg-primaryBlue transition-all"
 >
