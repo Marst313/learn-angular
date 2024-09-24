@@ -1,0 +1,3 @@
+section {
+  @apply bg-gradient-to-br from-thertiaryBlue via-secondaryBlue to-primaryBlue/80;
+}

@@ -1,0 +1,9 @@
+.open-music {
+  @apply bg-gradient-to-t from-primaryBlue/80 to-secondaryBlue p-4 sm:ml-64;
+
+  height: calc(100vh - 3.5rem);
+}
+
+.container-single-music {
+  @apply mx-auto w-80 rounded-lg bg-white/20 p-3 backdrop-blur-md;
+}

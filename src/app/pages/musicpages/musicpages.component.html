@@ -1,89 +1,76 @@
-<section
-  class="h-screen bg-gradient-to-br from-secondaryBlue to-thertiaryBlue p-4 sm:ml-64"
->
-  <div class="rounded-lg border-2 border-dashed border-gray-200 p-4">
-    <div class="mb-4 flex h-64 items-center justify-center rounded bg-gray-500">
-      <p class="text-2xl text-gray-400">hello</p>
+<section class="open-music">
+  <div class="mb-3 flex w-full items-center justify-between">
+    <a
+      class="group rounded-full border border-white p-2 hover:bg-white"
+      [routerLink]="['/']"
+    >
+      <svg
+        class="h-6 w-6 text-white group-hover:text-primaryBlue"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m15 19-7-7 7-7"
+        />
+      </svg>
+    </a>
+
+    <h1 class="text-xl text-white">Album Name</h1>
+
+    <button class="group rounded-full border border-white p-2 hover:bg-white">
+      <svg
+        class="h-6 w-6 overflow-hidden text-white group-hover:text-primaryBlue"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div class="container-single-music">
+    <div
+      class="mx-auto mb-1 flex h-72 w-72 items-center justify-center rounded-md bg-gray-500"
+    >
+      <img
+        [src]="music?.image"
+        [alt]="music?.name"
+        class="w-full object-cover"
+      />
     </div>
-    <div class="mb-4 grid grid-cols-2 gap-4">
-      <div class="flex h-28 items-center justify-center rounded bg-gray-50">
-        <p class="text-2xl text-gray-400">
-          <svg
-            class="h-3.5 w-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
+    <div class="relative mx-auto mb-1 flex w-72 justify-between">
+      <div class="flex flex-col">
+        <p class="text-lg font-semibold text-white">
+          {{ music?.title }}
         </p>
-      </div>
-      <div class="flex h-28 items-center justify-center rounded bg-gray-50">
-        <p class="text-2xl text-gray-400">
-          <svg
-            class="h-3.5 w-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div class="flex h-28 items-center justify-center rounded bg-gray-50">
-        <p class="text-2xl text-gray-400">
-          <svg
-            class="h-3.5 w-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
-        </p>
-      </div>
-      <div class="flex h-28 items-center justify-center rounded bg-gray-50">
-        <p class="text-2xl text-gray-400">
-          <svg
-            class="h-3.5 w-3.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 18 18"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 1v16M1 9h16"
-            />
-          </svg>
+
+        <p class="text-sm text-white/60">
+          {{ music?.singer }}
         </p>
       </div>
     </div>
-    <div class="mb-4 flex h-48 items-center justify-center rounded bg-gray-50">
+
+    <div
+      class="mx-auto flex h-14 w-72 items-center justify-center rounded bg-gray-50"
+    >
       <p class="text-2xl text-gray-400">
         <svg
           class="h-3.5 w-3.5"

@@ -1,0 +1,23 @@
+<section>
+  <ul class="flex flex-wrap p-4 text-gray-900 dark:text-white">
+    <li *ngFor="let list of categories">
+      <button
+        (click)="changeType(list.name)"
+        [ngClass]="list.name === albumType ? 'bg-primaryBlue' : ''"
+        class="me-2 w-fit rounded-lg px-3 py-2 text-sm text-white hover:bg-primaryBlue md:me-6"
+      >
+        {{ list.name }}
+      </button>
+    </li>
+  </ul>
+
+  <ul class="grid grid-cols-2 gap-4 px-4 pb-28 md:grid-cols-3">
+    <li *ngFor="let music of albums">
+      <img
+        class="h-60 w-60 rounded-lg object-cover"
+        [src]="music.image"
+        [alt]="music.name"
+      />
+    </li>
+  </ul>
+</section>
