@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
   IAllAlbum,
   IListTypeCategory,
@@ -19,17 +19,35 @@ export class HomeComponent implements OnInit {
   categories: IListTypeCategory[] = ListTypeCategory;
   albums: IAllAlbum[] = allMusic;
   albumType: TypeCategoryAlbum = 'all';
+  homeSearch: string | number = '';
 
   constructor(private homeService: HomeService) {}
 
   ngOnInit() {
-    // Subscribe to the loading state
+    // Subscribe album type
     this.homeService.albumType.subscribe((type) => {
       this.albumType = type;
+    });
+
+    // Subscribe home search
+    this.homeService.homeSearch.subscribe((search) => {
+      this.homeSearch = search;
+    });
+
+    // Subscribe allmusic
+    this.homeService.allMusic.subscribe((music) => {
+      this.albums = music;
     });
   }
 
   changeType(type: TypeCategoryAlbum) {
     this.homeService.setAlbumType(type);
+
+    this.albums = allMusic.filter((music) => {
+      if (type === 'all') {
+        return music;
+      }
+      return music.type === type;
+    });
   }
 }

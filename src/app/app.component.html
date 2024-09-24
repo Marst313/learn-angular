@@ -57,6 +57,8 @@
           class="block w-full rounded-lg border border-gray-300 bg-primaryBlue p-4 py-2 ps-10 text-sm text-white focus:border-blue-500 focus:bg-secondaryBlue focus:ring-white focus:placeholder:text-white"
           placeholder="Search Music, Singer..."
           required
+          [value]="homeSearch"
+          (input)="handleSearch($event)"
         />
         <button
           type="submit"
