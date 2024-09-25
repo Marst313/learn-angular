@@ -1,3 +1,7 @@
 section {
-  @apply bg-gradient-to-br from-thertiaryBlue via-secondaryBlue to-primaryBlue/80;
+  @apply bg-gradient-to-br from-thertiaryBlue via-secondaryBlue to-primaryBlue/80 p-4 pb-28 pt-16 sm:ps-80 lg:h-screen lg:pb-32;
+}
+
+.shadow-first {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }

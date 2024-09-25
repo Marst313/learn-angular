@@ -1,23 +1,58 @@
 <section>
-  <ul class="flex flex-wrap p-4 text-gray-900 dark:text-white">
+  <h1 class="cursor-pointer ps-4 text-xl font-semibold hover:underline">
+    Made For Users
+  </h1>
+
+  <ul class="mt-3 flex w-full justify-start gap-2 ps-4">
     <li *ngFor="let list of categories">
       <button
         (click)="changeType(list.name)"
         [ngClass]="list.name === albumType ? 'bg-primaryBlue' : ''"
-        class="me-2 w-fit rounded-lg px-3 py-2 text-sm text-white hover:bg-primaryBlue md:me-6"
+        class="w-fit rounded-lg px-3 py-2 text-sm capitalize text-white hover:bg-primaryBlue md:me-6"
       >
         {{ list.name }}
       </button>
     </li>
   </ul>
 
-  <ul class="grid lg:grid-cols-5 gap-4 px-4 pb-28 grid-cols-2">
-    <li *ngFor="let music of albums">
+  <ul
+    class="mt-3 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7"
+  >
+    <li
+      *ngFor="let music of albums"
+      class="group relative flex w-fit flex-col items-start overflow-hidden rounded-md p-4 hover:cursor-pointer hover:bg-white/20"
+    >
       <img
-        class="h-60 w-60 rounded-lg object-cover"
+        class="h-44 w-44 rounded-lg object-cover group-hover:scale-105 sm:h-32 sm:w-32 lg:h-40 lg:w-40"
         [src]="music.image"
         [alt]="music.name"
       />
+      <div
+        class="mt-2 line-clamp-1 self-start text-start text-xs capitalize text-white"
+      >
+        <h1>{{ music.name }}</h1>
+        <p class="line-clamp-1">{{ music.title }}</p>
+      </div>
+
+      <button
+        class="shadow-first absolute left-16 top-36 translate-x-[200%] rounded-full bg-thertiaryBlue p-2 opacity-0 transition-all duration-500 group-hover:-translate-x-full group-hover:opacity-100 sm:top-24 md:top-32 lg:top-[7.7rem]"
+      >
+        <svg
+          class="h-8 w-8 text-primaryBlue dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8l8-6a1 1 0 0 0 0-1.6l-8-6Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
     </li>
   </ul>
 </section>

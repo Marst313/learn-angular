@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     const searchElement = e.target as HTMLInputElement;
 
     const searchMusic = this.albums.filter((music) => {
-      return music.name
+      return music.title
         .toLowerCase()
         .includes(searchElement.value.trim().toLowerCase());
     });
